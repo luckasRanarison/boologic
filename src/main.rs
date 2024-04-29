@@ -8,7 +8,7 @@ fn main() -> io::Result<()> {
     let mut buffer = String::new();
 
     loop {
-        io::stdout().write(b"> ")?;
+        io::stdout().write_all(b"> ")?;
         io::stdout().flush()?;
         io::stdin().read_line(&mut buffer)?;
 

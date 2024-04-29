@@ -82,7 +82,7 @@ fn parse_primary(input: &str) -> Result<(Expr, &str)> {
 
 fn parse_group(input: &str) -> Result<(Expr, &str)> {
     let rest = seq("(", input)?;
-    let (node, rest) = parse_or(&rest)?;
+    let (node, rest) = parse_or(rest)?;
     let rest = seq(")", rest)?;
     Ok((node, rest))
 }
