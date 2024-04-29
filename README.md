@@ -18,7 +18,7 @@ Build and run the project with [cargo](rustup.rs/) to enter the REPL, you can us
 ### Example
 
 ```
-> (p -> q) & q
+> (p -> !q) & q
   p  | q  | ¬q  | (p ⭢ ¬q)  | ((p ⭢ ¬q) ∧ q)
   0  | 0  | 1   | 1         | 0
   0  | 1  | 0   | 1         | 1
