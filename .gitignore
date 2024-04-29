@@ -1,0 +1,3 @@
+target
+data/*.xml
+data/*.xml.gz
