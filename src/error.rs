@@ -6,8 +6,6 @@ pub enum Error {
     InvalidToken(String),
     #[error("Expected '{0}'")]
     ExpectedSequence(String),
-    #[error("Missing right operand")]
-    MissingRhs,
     #[error("Unexpected end of file")]
     UnexpectedEOF,
 }
