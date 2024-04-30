@@ -1,4 +1,8 @@
-use boologic::{ast::Expr, env::Environment, eval::Eval, parser::parse, utils::num_to_bool};
+use boologic::{
+    parse,
+    utils::{compare_labels, num_to_bool},
+    Environment, Eval, Expr,
+};
 use std::{
     collections::{HashMap, HashSet},
     io::{self, Write},
@@ -49,10 +53,7 @@ fn print_table(source: &str, root: Expr) {
 
     let mut labels = results.keys().collect::<Vec<_>>();
 
-    labels.sort_by(|a, b| match (a.len(), b.len()) {
-        (1, 1) => a.cmp(b),  // alphabetic order
-        (a, b) => a.cmp(&b), // operation length order
-    });
+    labels.sort_by(|a, b| compare_labels(a, b));
 
     for i in 0..cases + 1 {
         for (j, label) in labels.iter().enumerate() {
