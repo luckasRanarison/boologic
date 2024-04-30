@@ -7,6 +7,11 @@ pub trait Eval {
 impl Eval for Expr {
     fn eval(&self, env: &mut Environment) -> bool {
         let hash = self.to_string();
+
+        if let Some(result) = env.get_result(&hash) {
+            return result;
+        }
+
         let result = match self {
             Expr::Or(lhs, rhs)
             | Expr::And(lhs, rhs)
@@ -24,8 +29,9 @@ impl Eval for Expr {
                 }
             }
             Expr::Not(op) => !op.eval(env),
-            Expr::Var(name) => env.get(name),
+            Expr::Var(name) => env.get_variable(name),
         };
+
         env.insert(hash, result);
 
         result

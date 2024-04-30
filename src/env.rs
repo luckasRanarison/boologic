@@ -14,8 +14,12 @@ impl Environment {
         }
     }
 
-    pub fn get(&self, name: &char) -> bool {
+    pub fn get_variable(&self, name: &char) -> bool {
         self.variables[name]
+    }
+
+    pub fn get_result(&self, expr: &str) -> Option<bool> {
+        self.results.get(expr).copied()
     }
 
     pub fn insert(&mut self, expr: String, value: bool) {

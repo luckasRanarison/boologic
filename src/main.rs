@@ -27,7 +27,7 @@ fn print_table(source: &str, root: Expr) {
         .filter(|ch| ch.is_alphabetic())
         .collect::<HashSet<char>>();
     let variable_count = variables.len();
-    let cases = 2u64.pow(variable_count as u32);
+    let cases = 2u32.pow(variable_count as u32);
     let mut results = HashMap::<String, Vec<bool>>::new();
 
     for i in 0..cases {
