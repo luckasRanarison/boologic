@@ -4,7 +4,7 @@ A toy REPL for getting truth tables from boolean expressions.
 
 ## Usage
 
-Build and run the project with [cargo](rustup.rs/) to enter the REPL, you can use use `CTRL` + `C` to exit.
+Build and run the project with [cargo](rustup.rs/) to enter the REPL, you can use `CTRL` + `C` to exit.
 
 ### Expressions
 
