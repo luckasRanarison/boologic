@@ -7,6 +7,8 @@ use std::{
 fn main() -> io::Result<()> {
     let mut buffer = String::new();
 
+    println!("Boologic REPL, press CTRL + C to exit");
+
     loop {
         io::stdout().write_all(b"> ")?;
         io::stdout().flush()?;
@@ -54,13 +56,15 @@ fn print_table(source: &str, root: Expr) {
 
     for i in 0..cases + 1 {
         for (j, label) in labels.iter().enumerate() {
-            let width = label.chars().count() + 1;
+            let start = if j > 0 { " | " } else { "  " };
             let text = match i > 0 {
                 true => (results[*label][i as usize - 1] as u8).to_string(),
                 false => label.to_string(),
             };
-            print!("{}{text:<width$}", if j > 0 { " | " } else { "  " });
+            let width = label.chars().count() + 1;
+            let end = if j == labels.len() - 1 { "\n" } else { "" };
+
+            print!("{start}{text:<width$}{end}");
         }
-        println!();
     }
 }

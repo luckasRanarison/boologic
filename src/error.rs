@@ -2,10 +2,12 @@ use thiserror::Error;
 
 #[derive(Debug, Error)]
 pub enum Error {
-    #[error("Invalid token {0}")]
+    #[error("Invalid token '{0}'")]
     InvalidToken(String),
     #[error("Expected '{0}'")]
     ExpectedSequence(String),
+    #[error("Missing right operand")]
+    MissingRhs,
     #[error("Unexpected end of file")]
     UnexpectedEOF,
 }
