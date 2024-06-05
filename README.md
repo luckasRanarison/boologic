@@ -1,6 +1,6 @@
 ## Description
 
-A toy REPL for getting truth tables from boolean expressions.
+A toy REPL for playing with boolean expressions.
 
 ## Usage
 
@@ -15,10 +15,17 @@ Build and run the project with [cargo](rustup.rs/) to enter the REPL, you can us
 - `&` And
 - `|` Or
 
+### Commands
+
+- `table` Generates truth table
+- `clear` Clears the screen
+- `help` Shows available commands
+- `exit` Exits the program
+
 ### Example
 
 ```
-> (p -> !q) & q
+> table (p -> !q) & q
   p  | q  | ¬q  | (p ⭢ ¬q)  | ((p ⭢ ¬q) ∧ q)
   0  | 0  | 1   | 1         | 0
   0  | 1  | 0   | 1         | 1
