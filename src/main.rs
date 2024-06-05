@@ -11,19 +11,51 @@ use std::{
 fn main() -> io::Result<()> {
     let mut buffer = String::new();
 
-    println!("Boologic REPL, press CTRL + C to exit");
+    println!("Boologic REPL, Enter 'help' to see usage");
 
     loop {
         io::stdout().write_all(b"> ")?;
         io::stdout().flush()?;
         io::stdin().read_line(&mut buffer)?;
 
-        match parse(&buffer) {
-            Ok(root) => print_table(root),
-            Err(err) => eprintln!("Error: {err}"),
-        };
+        let (cmd, arg) = buffer.split_once(' ').unwrap_or((&buffer.trim_end(), ""));
+
+        match cmd {
+            "" => {}
+            "exit" => break,
+            "help" => print_help(),
+            "clear" => clear_screen(),
+            "table" => parse_then(arg, print_table),
+            _ => println!("Error: Invalid command"),
+        }
 
         buffer.clear();
+    }
+
+    Ok(())
+}
+
+#[allow(clippy::print_literal)]
+fn print_help() {
+    println!(
+        "{}\n{}\n{}",
+        "table <expr>     Print the truth table of a given expression",
+        "clear            Clear the screen",
+        "exit             Exit the program"
+    );
+}
+
+fn clear_screen() {
+    print!("\x1b[2J\x1b[0;0H") // clear + moveto 0,0
+}
+
+fn parse_then<F>(source: &str, callback: F)
+where
+    F: Fn(Expr),
+{
+    match parse(source) {
+        Ok(root) => callback(root),
+        Err(err) => println!("Error: {err}"),
     }
 }
 

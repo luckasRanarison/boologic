@@ -88,7 +88,7 @@ fn parse_group(input: &str) -> Result<(Expr, &str)> {
 }
 
 fn parse_variable(input: &str) -> Result<(Expr, &str)> {
-    let ch = input.chars().next().ok_or(Error::UnexpectedEOF)?;
+    let ch = input.chars().next().ok_or(Error::UnexpectedEOI)?;
     let node = ch
         .is_alphabetic()
         .then_some(Expr::Var(ch))

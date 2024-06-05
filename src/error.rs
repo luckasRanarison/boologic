@@ -6,8 +6,8 @@ pub enum Error {
     InvalidToken(String),
     #[error("Expected '{0}'")]
     ExpectedSequence(String),
-    #[error("Unexpected end of file")]
-    UnexpectedEOF,
+    #[error("Unexpected end of input")]
+    UnexpectedEOI,
 }
 
 pub type Result<T> = std::result::Result<T, Error>;
